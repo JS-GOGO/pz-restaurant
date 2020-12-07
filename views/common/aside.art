@@ -1,0 +1,50 @@
+<!-- 侧边栏 -->
+<div class="aside fl">
+    <ul class="menu list-unstyled">
+        <li>
+            <a class="item {{currentLink=='user'?'active':''}}" href="/admin/user-show">
+                <span class="glyphicon glyphicon-user"></span> 用户管理
+            </a>
+        </li>
+        <li>
+            <a class="item {{currentLink=='compartment'?'active':''}}" href="/admin/compartment/compartment-show">
+                <span class="glyphicon glyphicon-th-list"></span> 包间管理
+            </a>
+        </li>
+        <li>
+            <a class="item {{currentLink=='menu'?'active':''}}" href="/admin/menu/menu-show">
+                <span class="glyphicon glyphicon-th-list"></span> 菜单管理
+            </a>
+        </li>
+        <li>
+            <a class="item {{currentLink=='comment'?'active':''}}" href="/admin/comment/comment-show">
+                <span class="glyphicon glyphicon-th-list"></span> 评论管理
+            </a>
+        </li>
+        <li>
+            <a class="item {{currentLink=='order'?'active':''}}" href="/admin/order/order-show">
+                <span class="glyphicon glyphicon-th-list"></span> 订单管理
+            </a>
+        </li>
+    </ul>
+    <div class="cprt">
+        Powered by <a href="http://www.itheima.com/" target="_blank">用户管理系统</a>
+    </div>
+</div>
+<script src="/admin/lib/jquery/dist/jquery.min.js"></script>
+
+<script type="text/javascript">
+    // $(function() {
+    //     let currentLink = 'user';
+    //     let list = ['user', 'compartment', 'menu', 'comment', 'order']
+    //     console.log($(".menu li").length);
+    //     $(".menu li").click(function() {
+    //         let index = $(this).index();
+    //         console.log(index);
+    //         console.log(list[index]);
+    //         currentLink = list[index]
+    //     })
+    //     console.log(currentLink);
+    // })
+</script>
+<!-- 侧边栏 -->

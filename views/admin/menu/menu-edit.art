@@ -1,0 +1,89 @@
+{{extend './../../common/layout.art'}} {{block 'main'}} {{include './../../common/header.art'}}
+<!-- 主体内容 -->
+<div class="content">
+    {{include './../../common/aside.art'}}
+    <div class="main">
+        <!-- 这个页面有一个post和两个get，所以对get的数据要经过判断才能渲染页面 -->
+        <!-- 分类标题 -->
+        <div class="title">
+            <h4 style="display:{{button=='修改用户'?'block':'none'}}">{{menu && menu.roomname}}</h4>
+            <p class="tips">{{ message }}</p>
+        </div>
+        <!-- /分类标题 -->
+        <form class="form-container" action="{{link}}" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label>菜品名</label>
+                <input type="text" class="form-control" placeholder="{{menu ? '请输入修改菜品名':'请输入菜品名'}}" name="menuname" value="{{menu && menu.menuname}}">
+            </div>
+            <div class="form-group">
+                <label>菜单价格</label>
+                <input type="number" class="form-control" placeholder="{{menu ? '请输入修改菜品价格':'请输入菜品价格'}}" name="price" value="{{menu && menu.price}}">
+
+            </div>
+            <div class="form-group">
+                <label>菜单描述</label>
+                <input type="text" class="form-control" placeholder="{{menu ? '请输入修改菜品描述':'请输入菜品描述'}}" name="description" value="{{menu && menu.description}}">
+
+            </div>
+            <div class="form-group">
+                <label for="exampleInputFile">菜品图片</label>
+                <!-- multiple 允许用户选择多个文件 -->
+                <input type="file" name="picture" id="file">
+                <div class="thumbnail-waper">
+                    <img class="img-thumbnail" src="{{menu && menu.picture}}" id="preview">
+                </div>
+            </div>
+            <div class="form-group">
+                <label>可选口味：</label>
+                <label>  <input type="radio" name="taste" value="不辣" {{menu && menu.taste == '不辣' ? 'checked':''}}>不辣</label>
+                <label><input type="radio" name="taste" value="微辣" {{menu && menu.taste == '微辣' ? 'checked':''}}>微辣</label>
+                <label> <input type="radio" name="taste" value="中辣" {{menu && menu.taste == '中辣' ? 'checked':''}}>中辣</label>
+                <label> <input type="radio" name="taste" value="特辣" {{menu && menu.taste == '特辣' ? 'checked':''}}>特辣</label>
+
+            </div>
+            <div class="form-group">
+                <label>状态：</label>
+                <label>
+                        <input type="radio" name="status"  value="{{true}}" checked> 已上架
+                    </label>
+                <label>
+                        <input type="radio" name="status" value="{{false}}">未上架
+                    </label>
+            </div>
+            <div class="form-group">
+                <label>备注</label>
+                <input type="text" class="form-control" placeholder="{{menu ? '请输入修改备注':'请输入备注'}}" name="remarks" value="{{menu && menu.remarks}}">
+
+            </div>
+
+            <div class="buttons">
+                <input type="submit" class="btn btn-primary" value="{{button}}">
+            </div>
+        </form>
+    </div>
+</div>
+<script type="text/javascript">
+    // 获取数据
+    // const editorData = editor.getData();
+
+    //file是上传文件的控件
+    var file = document.querySelector('#file');
+    var preview = document.querySelector('#preview')
+        //当选择完文件的时候
+    file.onchange = function() {
+        //1. 创建文件读取对象
+        var reader = new FileReader();
+        //用户选择完文件的列表 是一个数值，不同方法可以选择多个文件
+        // console.log(this.files[0]);
+        //2. 读取文件第一个选择的文件 reader.readAsDataURL是一个异步函数，需要通过监听一个函数获得返回值
+        reader.readAsDataURL(this.files[0]);
+        // 3. 监听onload事件 onload 事件会在页面或图像加载（读取）完成后立即发生。
+        reader.onload = function() {
+            // 这是读取文件的数据码，可以放在src中使用
+            // console.log(reader.result);
+            //4. 将读取的文件的结果渲染到页面中
+            preview.src = reader.result;
+        }
+    }
+</script>
+{{/block}}

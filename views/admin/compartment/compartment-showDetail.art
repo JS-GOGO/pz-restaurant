@@ -1,0 +1,17 @@
+{{extend './../../common/layout.art'}} {{block 'main'}}
+
+<!-- 子模板的相对路径相对的就是当前文件 因为它是由模板引擎解析的 而不是浏览器 -->
+
+{{include './../../common/header.art'}}
+<!-- 主体内容 -->
+<div class="content">
+    {{include './../../common/aside.art'}} {{menus}} {{/block}} {{block 'script'}}
+    <script type="text/javascript">
+        $('.delete').on('click', function() {
+            // 获取当前点击按钮包间的自定以属性值（也就是当前点击包间id）
+            var id = $(this).attr('data-id');
+            // 将要删除的包间id存储在隐藏域的value值中
+            $('#deleteCompartmentId').val(id);
+        })
+    </script>
+    {{/block}}

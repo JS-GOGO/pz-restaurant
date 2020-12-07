@@ -1,0 +1,35 @@
+{{extend './../../common/layout.art'}} {{block 'main'}} {{include './../../common/header.art'}}
+<!-- 主体内容 -->
+<div class="content">
+    {{include './../../common/aside.art'}}
+    <div class="main">
+        <!-- 这个页面有一个post和两个get，所以对get的数据要经过判断才能渲染页面 -->
+        <!-- 分类标题 -->
+        <div class="title">
+            <h4 style="display:{{button=='修改用户'?'block':'none'}}">{{compartment && compartment.roomname}}</h4>
+            <p class="tips">{{ message }}</p>
+        </div>
+        <!-- /分类标题 -->
+        <form class="form-container" action="{{link}}" method="post">
+            <div class="form-group">
+                <label>包间名</label>
+                <input type="text" class="form-control" placeholder="{{compartment ? '请输入修改包间名':'请输入包间名'}}" name="roomname" value="{{compartment && compartment.roomname}}" {{compartment && compartment ? 'disabled': ''}}>
+            </div>
+            <div class="form-group">
+                <!--  -->
+            </div>
+            <div class="form-group">
+                <label>状态</label>
+                <select class="form-control" name="status">
+                    <option value={{true}} {{compartment && compartment.status?'selected':''}}>正在使用</option>
+                    <option value={{false}} {{compartment && compartment.status?'':'selected'}}>空闲中</option>
+                </select>
+            </div>
+
+            <div class="buttons">
+                <input type="submit" class="btn btn-primary" value="{{button}}">
+            </div>
+        </form>
+    </div>
+</div>
+{{/block}}
